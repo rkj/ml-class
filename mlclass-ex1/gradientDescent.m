@@ -18,9 +18,8 @@ for iter = 1:num_iters
     %
 
 
-
-
-
+    tmp = X*theta - y;
+    theta = theta - (alpha * sum([tmp tmp].*X) / m)';
 
 
     % ============================================================
