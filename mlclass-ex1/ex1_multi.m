@@ -43,13 +43,13 @@ m = length(y);
 fprintf('First 10 examples from the dataset: \n');
 fprintf(' x = [%.0f %.0f], y = %.0f \n', [X(1:10,:) y(1:10,:)]');
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
-
 % Scale features and set them to zero mean
 fprintf('Normalizing Features ...\n');
 
 [X mu sigma] = featureNormalize(X);
+
+fprintf('First 10 examples after normalization: \n');
+fprintf(' x = [%.2f %.2f], y = %.0f \n', [X(1:10,:) y(1:10,:)]');
 
 % Add intercept term to X
 X = [ones(m, 1) X];
@@ -81,31 +81,39 @@ X = [ones(m, 1) X];
 
 fprintf('Running gradient descent ...\n');
 
+figure;
+hold on;
+range = 0.05:0.1:1.2;
+idx = 0;
+for alpha = range
 % Choose some alpha value
-alpha = 0.01;
+%alpha = 0.01;
 num_iters = 100;
+idx = idx + 1;
 
 % Init Theta and Run Gradient Descent 
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
 % Plot the convergence graph
-figure;
-plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
+order = get(gca, 'colororder');
+c = order(mod(idx, size(order, 1)) + 1, :);
+plot(1:numel(J_history), J_history, 'color', c, 'LineWidth', 2);
 xlabel('Number of iterations');
 ylabel('Cost J');
 
 % Display gradient descent's result
-fprintf('Theta computed from gradient descent: \n');
+fprintf('Alpha: %f, cost: %f, theta:\n', alpha, computeCostMulti(X,y, theta));
 fprintf(' %f \n', theta);
 fprintf('\n');
+end
+legend(strsplit(num2str(range), ' ', true));
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
-
+price = [1 (([1650 3] - mu) ./ sigma)] * theta; % You should change this
 
 % ============================================================
 
@@ -149,7 +157,7 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
+price = [1 1650 3] * theta; % You should change this
 
 
 % ============================================================
