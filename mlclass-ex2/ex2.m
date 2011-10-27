@@ -67,8 +67,6 @@ fprintf('Cost at initial theta (zeros): %f\n', cost);
 fprintf('Gradient at initial theta (zeros): \n');
 fprintf(' %f \n', grad);
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-
 
 %% ============= Part 3: Optimizing using fminunc  =============
 %  In this exercise, you will use a built-in function (fminunc) to find the
@@ -99,8 +97,6 @@ ylabel('Exam 2 score')
 legend('Admitted', 'Not admitted')
 hold off;
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-return;
 
 %% ============== Part 4: Predict and Accuracies ==============
 %  After learning the parameters, you'll like to use it to predict the outcomes
@@ -124,7 +120,4 @@ fprintf(['For a student with scores 45 and 85, we predict an admission ' ...
 p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
-
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
 

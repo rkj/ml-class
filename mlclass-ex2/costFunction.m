@@ -19,7 +19,7 @@ h = sigmoid(theta' * X')';
 J = sum(-y .* log(h) - (1 - y) .* log(1 - h))/m;
 
 diff = h - y;
-grad = sum(repmat(diff, 1, size(X, 2)) .* X) ./ m;
+grad = (sum(repmat(diff, 1, size(X, 2)) .* X) ./ m)';
  
 % =============================================================
 
