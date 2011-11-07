@@ -41,10 +41,6 @@ sel = sel(1:100);
 
 displayData(X(sel, :));
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
-
-
 %% ================ Part 2: Loading Pameters ================
 % In this part of the exercise, we load some pre-initialized 
 % neural network parameters.
@@ -74,11 +70,14 @@ fprintf('\nFeedforward Using Neural Network ...\n')
 % Weight regularization parameter (we set this to 0 here).
 lambda = 0;
 
+%X = X(1:10, :);
+
 J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
                    num_labels, X, y, lambda);
 
 fprintf(['Cost at parameters (loaded from ex4weights): %f '...
          '\n(this value should be about 0.287629)\n'], J);
+   return
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
