@@ -40,14 +40,17 @@ Theta2_grad = zeros(size(Theta2));
 %         computed in ex4.m
 
 
-x = [ones(m, 1), X];
-hidden = [ones(m, 1), sigmoid(x * Theta1')];
-H = sigmoid(hidden * Theta2');
+a1 = x = [ones(m, 1), X];
+z2 = x * Theta1';
+a2 = [ones(m, 1), sigmoid(z2)];
+z3 = a2 * Theta2';
+a3 = H = sigmoid(z3);
 Y = zeros(m, num_labels);
 for i = 1 : m
   Y(i, :) = eye(num_labels)(y(i), :);
 end;
 J = sum(sum(-Y .* log(H) - (1 - Y) .* log(1 - H))) / m;
+J += lambda / 2 / m * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
 
 %
 % Part 2: Implement the backpropagation algorithm to compute the gradients
@@ -65,7 +68,14 @@ J = sum(sum(-Y .* log(H) - (1 - Y) .* log(1 - H))) / m;
 %               over the training examples if you are implementing it for the 
 %               first time.
 
-J += lambda / 2 / m * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2)));
+d3 = a3 - Y;
+g = [ones(m, 1), sigmoidGradient(z2)];
+d2 = d3 * Theta2 .* g; 
+Theta1_grad = (d2' * a1)(2:end, :) ./ m;
+Theta2_grad = (d3' * a2) ./ m;
+
+Theta1_grad += [zeros(size(Theta1, 1), 1), lambda / m * Theta1(:, 2:end)];
+Theta2_grad += [zeros(size(Theta2, 1), 1), lambda / m * Theta2(:, 2:end)];
 
 %
 % Part 3: Implement regularization with the cost function and gradients.

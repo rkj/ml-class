@@ -39,7 +39,7 @@ m = size(X, 1);
 sel = randperm(size(X, 1));
 sel = sel(1:100);
 
-displayData(X(sel, :));
+%displayData(X(sel, :));
 
 %% ================ Part 2: Loading Pameters ================
 % In this part of the exercise, we load some pre-initialized 
@@ -107,11 +107,6 @@ fprintf('Sigmoid gradient evaluated at [1 -0.5 0 0.5 1]:\n  ');
 fprintf('%f ', g);
 fprintf('\n\n');
 
-return
-fprintf('Program paused. Press enter to continue.\n');
-pause;
-
-
 %% ================ Part 6: Initializing Pameters ================
 %  In this part of the exercise, you will be starting to implment a two
 %  layer neural network that classifies digits. You will start by
@@ -136,10 +131,7 @@ initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
 fprintf('\nChecking Backpropagation... \n');
 
 %  Check gradients by running checkNNGradients
-checkNNGradients;
-
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%checkNNGradients;
 
 
 %% =============== Part 8: Implement Regularization ===============
@@ -151,7 +143,7 @@ fprintf('\nChecking Backpropagation (w/ Regularization) ... \n')
 
 %  Check gradients by running checkNNGradients
 lambda = 3;
-checkNNGradients(lambda);
+%checkNNGradients(lambda);
 
 % Also output the costFunction debugging values
 debug_J  = nnCostFunction(nn_params, input_layer_size, ...
