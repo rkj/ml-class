@@ -8,6 +8,11 @@ function word_indices = processEmail(email_contents)
 
 % Load Vocabulary
 vocabList = getVocabList();
+index = struct();
+for i = 1:length(vocabList)
+  word = vocabList{i};
+  index = setfield(index, word, i);
+end
 
 % Init return value
 word_indices = [];
@@ -98,13 +103,9 @@ while ~isempty(email_contents)
     %
 
 
-
-
-
-
-
-
-
+    if isfield(index, str)
+      word_indices(length(word_indices) + 1) = getfield(index, str);
+    end
 
     % =============================================================
 
@@ -116,7 +117,6 @@ while ~isempty(email_contents)
     end
     fprintf('%s ', str);
     l = l + length(str) + 1;
-
 end
 
 % Print footer

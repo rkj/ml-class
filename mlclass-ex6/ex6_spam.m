@@ -36,9 +36,8 @@ word_indices  = processEmail(file_contents);
 fprintf('Word Indices: \n');
 fprintf(' %d', word_indices);
 fprintf('\n\n');
+return
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
 
 %% ==================== Part 2: Feature Extraction ====================
 %  Now, you will convert each email into a vector of features in R^n. 
