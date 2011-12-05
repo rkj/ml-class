@@ -35,10 +35,6 @@ load ('ex7data1.mat');
 plot(X(:, 1), X(:, 2), 'bo');
 axis([0.5 6.5 2 8]); axis square;
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
-
-
 %% =============== Part 2: Principal Component Analysis ===============
 %  You should now implement PCA, a dimension reduction technique. You
 %  should complete the code in pca.m
@@ -64,10 +60,7 @@ fprintf('Top eigenvector: \n');
 fprintf(' U(:,1) = %f %f \n', U(1,1), U(2,1));
 fprintf('\n(you should expect to see -0.707107 -0.707107)\n');
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
-
-
+return 
 %% =================== Part 3: Dimension Reduction ===================
 %  You should now implement the projection step to map the data onto the 
 %  first k eigenvectors. The code will then plot the data in this reduced 
