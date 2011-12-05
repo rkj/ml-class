@@ -43,8 +43,6 @@ fprintf('Closest centroids for the first 3 examples: \n')
 fprintf(' %d', idx(1:3));
 fprintf('\n(the closest centroids should be 1, 3, 2 respectively)\n');
 
-return
-
 %% ===================== Part 2: Compute Means =========================
 %  After implementing the closest centroids function, you should now
 %  complete the computeCentroids function.
@@ -61,8 +59,7 @@ fprintf('   [ 2.428301 3.157924 ]\n');
 fprintf('   [ 5.813503 2.633656 ]\n');
 fprintf('   [ 7.119387 3.616684 ]\n\n');
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+return
 
 
 %% =================== Part 3: K-Means Clustering ======================

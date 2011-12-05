@@ -22,7 +22,7 @@ idx = zeros(size(X,1), 1);
 %
 
 for i = 1:size(X,1)
-  mindist = sum((X(i, :) - centroids(1, :)).^2)
+  mindist = sum((X(i, :) - centroids(1, :)).^2);
   idx(i) = 1;
   for j = 1:K
     dist = sum((X(i, :) - centroids(j, :)) .^ 2);
